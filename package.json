@@ -1,0 +1,41 @@
+{
+  "name": "devel-docs",
+  "version": "1.0.0",
+  "description": "Documentation for Bluecadet Developers",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bluecadet/devel-docs.git"
+  },
+  "author": "Pete Inge, BC",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bluecadet/devel-docs/issues"
+  },
+  "homepage": "https://github.com/bluecadet/devel-docs#readme",
+  "devDependencies": {
+    "docpress": "0.7.1"
+  },
+  "docpress": {
+    "docs": "docs",
+    "github": "bluecadet/devel-docs",
+    "css": [
+      "docs/main.css"
+    ],
+    "scripts": [
+      "scripts.js"
+    ],
+    "markdown": {
+      "plugins": {
+        "decorate": {
+          "html": true
+        }
+      }
+    }
+  }
+}
