@@ -19,7 +19,9 @@
   },
   "homepage": "https://github.com/bluecadet/devel-docs#readme",
   "devDependencies": {
-    "docpress": "0.7.1"
+    "debug": "^3.1.0",
+    "docpress": "0.7.1",
+    "marked": "0.4.0"
   },
   "docpress": {
     "docs": "docs",
