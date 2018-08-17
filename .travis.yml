@@ -6,7 +6,7 @@ env:
   global:
     - GIT_NAME: pingevt
     - GIT_EMAIL: pinge@bluecadet.com
-    - GITHUB_REPO: bluecadet/drupal-docs
+    - GITHUB_REPO: bluecadet/devel-docs
     - GIT_SOURCE: _docpress
 
 script:
