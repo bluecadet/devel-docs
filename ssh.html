@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="assets/style.css?t=90051322">
+    <link rel="stylesheet" href="main.css?t=734caa58">
+    <script src="assets/script.js?t=93f1a66c"></script>
+    <script src="scripts.js?t=f781f34e"></script>
+    <title>Persistant SSH connection to Pantheon - Devel Docs</title>
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body class="-menu-visible">
+    <div class="doc-layout">
+      <div class="toggle menu-toggle js-menu-toggle"></div>
+      <div class="menu toc-menu">
+        <ul>
+          <li class="menu-item -level-0 -parent">
+            <ul class="submenu">
+              <li class="menu-item -level-1"><a class="link title  link-index" href="index.html">Devel Docs</a>
+              </li>
+              <li class="menu-item -level-1"><a class="link title -active link-ssh" href="ssh.html">Persistant SSH connection to Pantheon</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="body page-ssh">
+        <div class="header-nav">
+          <div class="right"><a class="iconlink" href="https://github.com/bluecadet/devel-docs" data-title="bluecadet/devel-docs">
+              <!-- span.title Open in GitHub--><span class="icon -github"></span></a>
+          </div>
+        </div>
+        <div class="markdown-body"><h1 id="persistant-ssh-connection-to-pantheon">Persistant SSH connection to Pantheon</h1>
+<p>Overall we need to create the ssh key on local machine, add it to Pantheon and then make sure the local machines ssh-agent has access to the key.</p>
+<ol>
+<li>run <code>ssh-keygen</code>. (This command works on Linux, MacOS, and Windows 10.)</li>
+<li>Use defaults unless you absolutely need something different</li>
+<li>Once the files are created, copy the contents of <code>~/.ssh/id_rsa.pub</code> to your clipboard.
+<ul>
+<li>Linux and Mac users can catthe file to the terminal and copy the output: <code>cat ~/.ssh/id_rsa.pub</code></li>
+<li>Windows users can achieve the same result with type: <code>type .ssh\id_rsa.pub</code></li>
+</ul>
+</li>
+<li>Add SSH key to Pantheon
+<ul>
+<li>Log in to Pantheon and go to the <em>Account</em> page.</li>
+<li>Click <em>SSH Keys</em></li>
+<li>Paste the copied public key into the box, and click <em>Add Key</em>.</li>
+<li>Your computer is now set up to securely connect to the Pantheon Git server. You can view a list of available keys on your Pantheon Account page.</li>
+</ul>
+</li>
+<li>Add your SSH key to the ssh-agent by running: <code>ssh-add ~/.ssh/id_rsa</code>
+<ul>
+<li>Windows 10 and Cygwin:</li>
+<li>Open <code>Manage optional features</code> from the start menu and make sure you have <code>Open SSH Client</code> in the list. If not, you should be able to add it.</li>
+<li>Open <code>Services</code> from the start Menu</li>
+<li>Scroll down to <code>OpenSSH Authentication Agent</code> &gt; right click &gt; properties</li>
+<li>Change the Startup type from Disabled to any of the other 3 options. I have mine set to <code>Automatic (Delayed Start)</code></li>
+<li>Open cmd and type where ssh to confirm that the top listed path is in System32. Mine is installed at <code>C:\Windows\System32\OpenSSH\ssh.exe</code>. If it&apos;s not in the list you may need to close and reopen cmd.</li>
+<li>In Cygwin, in your bash profile, add:</li>
+</ul>
+<pre><code>SSHAGENT=/usr/bin/ssh-agent
+SSHAGENTARGS=&quot;-s&quot;
+if [ -z &quot;$SSH_AUTH_SOCK&quot; -a -x &quot;$SSHAGENT&quot; ]; then
+    eval `$SSHAGENT $SSHAGENTARGS`
+    trap &quot;kill $SSH_AGENT_PID&quot; 0
+fi
+</code></pre>
+<ul>
+<li>This will start up ssh-agent for each Cygwin shell you have open. Close your Cygwin shell (if one is open) and open a new one. Now type:</li>
+</ul>
+<pre><code>ssh-add ~/.ssh/id_rsa
+[enter your password]
+</code></pre>
+</li>
+</ol>
+<p>Links:
+<a href="https://pantheon.io/docs/ssh-keys">Pantheon SSH Keys</a></p>
+<p><a href="https://stackoverflow.com/questions/18683092/how-to-run-ssh-add-on-windows">How to run ssh-add on windows</a></p>
+<p><a href="https://killtheradio.net/how-tos/ssh-agent-on-cygwin/">SSH Agent on Cygwin</a></p>
+
+        </div>
+        <div class="footer-nav">
+          <div class="left"><a href="index.html"><span class="title">Devel Docs</span></a></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -2,24 +2,36 @@
   "toc": {
     "sections": [
       {
-        "title": "Logo Developer Docs",
+        "title": "Devel Docs",
         "source": "README.md",
-        "expand": true,
         "url": "index.html",
         "slug": "index"
+      },
+      {
+        "title": "Persistant SSH connection to Pantheon",
+        "source": "docs/ssh.md",
+        "url": "ssh.html",
+        "slug": "ssh"
       }
     ]
   },
   "index": {
     "index.html": {
       "source": "README.md",
-      "title": "Logo Developer Docs",
-      "pageTitle": "Logo Developer Docs",
+      "title": "Devel Docs",
+      "pageTitle": "Devel Docs",
       "slug": "index"
+    },
+    "ssh.html": {
+      "source": "docs/ssh.md",
+      "title": "Persistant SSH connection to Pantheon - Devel Docs",
+      "pageTitle": "Persistant SSH connection to Pantheon",
+      "slug": "ssh"
     }
   },
   "sources": {
     "README.md": "index.html",
+    "docs/ssh.md": "ssh.html",
     "docs/main.css": "main.css",
     "docs/scripts.js": "scripts.js",
     "docs/img/bc_logo.png": "img/bc_logo.png"
